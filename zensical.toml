@@ -1,5 +1,5 @@
 [project]
-site_name = "The Tech Hub"
+site_name = "the tech hub"
 site_url = "https://thetechhub.io/"
 site_description = "Reflections on technical and interpersonal challenges as a developer and team lead"
 site_author = "Zsófia Kálosi"
@@ -7,8 +7,8 @@ copyright = "Copyright &copy; 2026 Zsófia Kálosi"  # shown in the footer of ev
 
 # The blog index (docs/index.md) is the homepage; posts are added to the nav automatically.
 nav = [
-  { "Home" = "index.md" },
-  { "About me" = "about.md" },
+  { "~" = "index.md" },              # home
+  { "whoami" = "whoami.md" },        # about me
 ]
 
 [project.theme]
@@ -20,7 +20,7 @@ features = [
   "navigation.footer",
   "navigation.indexes",
   "navigation.instant",
-  "navigation.tabs",        # Home / About me as top-level tabs
+  "navigation.tabs",        # ~ / history / ls / whoami as top-level tabs
   "navigation.top",
   "navigation.tracking",
   "search.highlight",
@@ -57,8 +57,10 @@ name = "LinkedIn"
 
 [project.plugins.blog]
 blog_dir = "."          # post list on the homepage; posts live in docs/posts/
+archive_name = "history"   # nav tab label for the archive (default: "Archive")
+categories_name = "ls"     # nav tab label for the categories (default: "Categories")
 # Only these categories are allowed (see CLAUDE.md); anything else fails the build.
-categories_allowed = ["Technical", "Interpersonal", "Leadership", "Process"]
+categories_allowed = ["technical", "interpersonal", "leadership", "process"]
 
 [project.plugins.tags]
 

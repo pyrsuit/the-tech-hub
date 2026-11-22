@@ -21,7 +21,7 @@ with **Zensical** and deployed to **GitHub Pages** at **https://thetechhub.io**.
 ├─ .github/workflows/docs.yml   # build + deploy on push to main
 ├─ docs/
 │  ├─ index.md                  # homepage intro; post list is rendered below it
-│  ├─ about.md                  # "About me" page
+│  ├─ whoami.md                 # "whoami" (about me) page
 │  ├─ CNAME                     # contains: thetechhub.io  (custom domain — do not delete)
 │  ├─ assets/images/            # images used in posts
 │  └─ posts/                    # one Markdown file per reflection
@@ -70,7 +70,7 @@ File name: `docs/posts/YYYY-MM-DD-short-slug.md`. Required front matter:
 date:
   created: 2026-11-22
 categories:
-  - Interpersonal        # one of: Technical, Interpersonal, Leadership, Process
+  - interpersonal        # one of: technical, interpersonal, leadership, process
 tags:
   - feedback
   - 1on1s
@@ -118,7 +118,7 @@ Conventions:
 
 ```toml
 [project]
-site_name = "The Tech Hub"
+site_name = "the tech hub"
 site_url = "https://thetechhub.io/"
 site_description = "Reflections on technical and interpersonal challenges as a developer and team lead"
 site_author = "Zsófia Kálosi"

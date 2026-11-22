@@ -2,7 +2,7 @@
 date:
   created: 2026-11-22
 categories:
-  - Leadership
+  - leadership
 tags:
   - api-design
   - backward-compatibility

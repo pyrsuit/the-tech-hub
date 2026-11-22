@@ -1,4 +1,4 @@
-# The Tech Hub
+# the tech hub
 
 Source for [thetechhub.io](https://thetechhub.io), a blog of reflections on the technical
 and interpersonal challenges of working as a software developer and team lead.
@@ -57,7 +57,7 @@ If a hook changes a file, the commit stops. Review the changes, `git add` them a
 │  └─ lint.yml                  # ruff lint on pushes to main and pull requests
 ├─ docs/
 │  ├─ index.md                  # homepage intro; the post list is rendered below it
-│  ├─ about.md                  # "About me" page
+│  ├─ whoami.md                 # "whoami" (about me) page
 │  ├─ CNAME                     # custom domain (thetechhub.io), do not delete
 │  ├─ assets/images/            # images used in posts
 │  └─ posts/                    # one Markdown file per post
@@ -78,7 +78,7 @@ Create `docs/posts/YYYY-MM-DD-short-slug.md`:
 date:
   created: 2026-11-22
 categories:
-  - Interpersonal        # one of: Technical, Interpersonal, Leadership, Process
+  - interpersonal        # one of: technical, interpersonal, leadership, process
 tags:
   - feedback
 slug: giving-feedback-to-a-senior-dev   # optional
