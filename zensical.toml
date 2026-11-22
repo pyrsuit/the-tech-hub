@@ -1,0 +1,90 @@
+[project]
+site_name = "The Tech Hub"
+site_url = "https://thetechhub.io/"
+site_description = "Reflections on technical and interpersonal challenges as a developer and team lead"
+site_author = "Zsófia Kálosi"
+copyright = "Copyright &copy; 2026 Zsófia Kálosi"  # shown in the footer of every page
+
+# The blog index (docs/index.md) is the homepage; posts are added to the nav automatically.
+nav = [
+  { "Home" = "index.md" },
+  { "About me" = "about.md" },
+]
+
+[project.theme]
+language = "en"
+features = [
+  "content.code.copy",
+  "content.footnote.tooltips",
+  "content.tooltips",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.instant",
+  "navigation.tabs",        # Home / About me as top-level tabs
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight",
+]
+
+# Light/dark mode following the system preference, with a manual toggle.
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
+
+# Social links shown as icons in the footer of every page.
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/pyrsuit"
+name = "GitHub"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/linkedin"
+link = "https://www.linkedin.com/in/zs%C3%B3fia-k-805864138/"  # "zsófia-k-805864138", URL-encoded
+name = "LinkedIn"
+
+[project.plugins.blog]
+blog_dir = "."          # post list on the homepage; posts live in docs/posts/
+# Only these categories are allowed (see CLAUDE.md); anything else fails the build.
+categories_allowed = ["Technical", "Interpersonal", "Leadership", "Process"]
+
+[project.plugins.tags]
+
+[project.markdown_extensions]
+abbr = {}
+admonition = {}
+attr_list = {}
+def_list = {}
+footnotes = {}
+md_in_html = {}
+toc.permalink = true
+pymdownx.betterem = {}
+pymdownx.details = {}
+pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
+pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.line_spans = "__span"
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.inlinehilite = {}
+pymdownx.keys = {}
+pymdownx.magiclink = {}
+pymdownx.mark = {}
+pymdownx.smartsymbols = {}
+pymdownx.superfences.custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+pymdownx.tabbed.alternate_style = true
+pymdownx.tasklist.custom_checkbox = true
+pymdownx.tilde = {}
