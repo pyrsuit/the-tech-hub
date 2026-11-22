@@ -15,11 +15,24 @@ The site is built with [Zensical](https://zensical.org) and deployed to GitHub P
 ```bash
 git clone git@github.com:pyrsuit/the-tech-hub.git
 cd the-tech-hub
-uv sync                  # install the exact versions from uv.lock
-uv run zensical serve    # preview at http://localhost:8000
+uv sync                     # install the exact versions from uv.lock
+uv run pre-commit install   # set up the git pre-commit hook (once per clone)
+uv run zensical serve       # preview at http://localhost:8000
 ```
 
 The preview reloads when you save a file and also shows draft posts.
+
+## Pre-commit hooks
+
+[pre-commit](https://pre-commit.com) runs these checks on the staged files before each commit
+(configured in `.pre-commit-config.yaml`):
+
+- **Ruff** lints (`ruff check --fix`) and formats (`ruff format`) Python code.
+- Basic file checks: trailing whitespace (Markdown line breaks are kept), a final newline,
+  valid YAML and TOML, no large files and no merge-conflict markers.
+- **uv-lock** makes sure `uv.lock` matches `pyproject.toml`.
+
+If a hook changes a file, the commit stops. Review the changes, `git add` them and commit again.
 
 ## Commands
 
@@ -29,6 +42,9 @@ The preview reloads when you save a file and also shows draft posts.
 | `uv run zensical serve` | Live preview at http://localhost:8000 (drafts included) |
 | `uv run zensical build --clean` | Production build into `site/` (drafts excluded) |
 | `uv run zensical build --clean --strict` | Same, but fails on warnings. Run before committing. |
+| `uv run pre-commit run --all-files` | Run all pre-commit hooks on every file |
+| `uv run pre-commit autoupdate` | Update the hook versions in `.pre-commit-config.yaml` |
+| `uv run ruff check .` | Lint Python code |
 | `uv add <package>` | Add a dependency (updates `pyproject.toml` and `uv.lock`) |
 | `uv lock --upgrade-package zensical` | Upgrade Zensical |
 
@@ -36,13 +52,16 @@ The preview reloads when you save a file and also shows draft posts.
 
 ```
 .
-├─ .github/workflows/docs.yml   # build + deploy on push to main
+├─ .github/workflows/
+│  ├─ docs.yml                  # build + deploy on push to main
+│  └─ lint.yml                  # ruff lint on pushes to main and pull requests
 ├─ docs/
 │  ├─ index.md                  # homepage intro; the post list is rendered below it
 │  ├─ about.md                  # "About me" page
 │  ├─ CNAME                     # custom domain (thetechhub.io), do not delete
 │  ├─ assets/images/            # images used in posts
 │  └─ posts/                    # one Markdown file per post
+├─ .pre-commit-config.yaml      # pre-commit hooks (ruff, file checks, uv-lock)
 ├─ pyproject.toml               # dependencies
 ├─ uv.lock                      # locked versions, always commit
 └─ zensical.toml                # site configuration
@@ -94,6 +113,9 @@ Every push to `main` runs `.github/workflows/docs.yml`, which builds the site wi
 
 `--locked` makes the build fail if `uv.lock` doesn't match `pyproject.toml`. Always commit
 both files together.
+
+`.github/workflows/lint.yml` runs `ruff check` on every push to `main` and on every pull
+request, using the Ruff version locked in `uv.lock`.
 
 ### One-time GitHub setup
 

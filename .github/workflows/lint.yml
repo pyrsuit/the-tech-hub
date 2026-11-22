@@ -1,0 +1,16 @@
+name: Lint
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ruff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7      # bump to the latest major when updating actions
+      - run: uv sync --locked            # same ruff version as uv.lock / local hooks
+      - run: uv run ruff check --output-format=github .
